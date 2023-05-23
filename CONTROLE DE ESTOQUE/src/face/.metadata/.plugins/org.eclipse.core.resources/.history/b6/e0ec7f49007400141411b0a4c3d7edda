@@ -1,0 +1,186 @@
+package face;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.naming.ldap.Rdn;
+import javax.swing.*;
+
+import controle.Programa;
+import dominio.ObjetosVeiculos;
+
+public class JanelaExcluirCarro extends JFrame{
+
+	/*GUIA PARA CRIAÇÃO DOS OBJETOS DO TIPO LABELS, BOTÕES, RADIOS BUTTONS...
+	 *INICIA COM UM PREFIXO E DEPOIS ADICIONA O NOME ESCOLHIDO PARA O OBJETO
+	 *
+	 *TIPO		      DECLARAÇÃO
+	 *JLABEL      --> lbl    + Nome1Nome2
+	 *TEXTFIELD   --> txt    + Nome1Nome2
+	 *BUTTON      --> btn    + Nome1Nome2
+	 *RADIOBUTTON --> rdbtn  + Nome1Nome2
+	 *BUTTONGROUP --> grpbtn + Nome1Nome2*/
+	private JPanel contentPane = new JPanel();
+
+	private ImageIcon imagem = new ImageIcon(getClass().getResource("excluircarros.png"));
+	private JLabel background = new JLabel(imagem);
+
+	// CRIA UM OBJETO PARA HERDAR OS COMPONENTES DO VEICULO 	
+	ObjetosVeiculos hc = new ObjetosVeiculos();
+
+	// ADICIONA SEPARADORES DE TELA
+	JSeparator s1 = new JSeparator();
+	JSeparator s2 = new JSeparator();
+
+	// ADICIONA OS BOTÕES CONSULTAR E ALTERAR
+	JButton btnConsultar = new JButton("Consultar");
+	JButton btnExcluir = new JButton("Excluir");
+
+	// VARIAVEL UTILIZADA PARA SETAR O VISIBLE DOS CAMPOS
+	private Boolean campos = new Boolean(false);
+
+	public JanelaExcluirCarro() {
+		// DEFINE PROPRIEDADES DA TELA
+		super("Excluir Carros");
+		this.setBounds(300, 300, 350, 420);
+		getContentPane().setLayout(null);
+		setLocationRelativeTo(null);
+		setResizable(false);
+
+		s1.setBounds(1,60,350,20);
+		this.add(s1);
+		s2.setBounds(1,335,500,20);
+		this.add(s2);
+
+		//ADICIONA OBJETOS DE CARRO
+		hc.lblCodigo_Veiculo.setBounds(60,80,100,20);
+		this.add(hc.lblCodigo_Veiculo);
+		hc.txtCodigo_Veiculo.setBounds(55,100,100,20);
+		this.add(hc.txtCodigo_Veiculo);
+
+		hc.lblChassi.setBounds(220,80,120,20);
+		this.add(hc.lblChassi);
+		hc.txtChassi.setBounds(190,100,100,20);
+		this.add(hc.txtChassi);
+		this.hc.txtChassi.setEditable(false);
+
+		hc.lblRenavam.setBounds(60,130,115,20);
+		this.add(hc.lblRenavam);
+		hc.txtRenavam.setBounds(55,150,100,20);
+		this.add(hc.txtRenavam);
+		this.hc.txtRenavam.setEditable(false);
+
+		hc.lblModelo.setBounds(220,130,115,20);
+		this.add(hc.lblModelo);
+		hc.txtModelo.setBounds(190,150,100,20);
+		this.add(hc.txtModelo);
+		this.hc.txtModelo.setEditable(false);
+
+		hc.lblAno.setBounds(90,180,115,20);
+		this.add(hc.lblAno);
+		hc.txtAno.setBounds(55,200,100,20);
+		this.add(hc.txtAno);
+		this.hc.txtAno.setEditable(false);
+
+		hc.lblDtAqs.setBounds(190,180,115,20);
+		this.add(hc.lblDtAqs);
+		hc.txtDtAqs.setBounds(190,200,100,20);
+		this.add(hc.txtDtAqs);
+		this.hc.txtDtAqs.setEditable(false);
+
+		hc.lblOpc.setBounds(70,250,115,20);
+		this.add(hc.lblOpc);
+		hc.rdbtnovo.setBounds(120,250,70,20);
+		this.add(hc.rdbtnovo);
+		this.hc.rdbtnovo.setEnabled(false);
+		hc.rdbtusado.setBounds(210,250,120,20);
+		this.add(hc.rdbtusado);
+		this.hc.rdbtusado.setEnabled(false);
+
+		hc.btngrpnovo.add(hc.rdbtnovo);
+		hc.btngrpnovo.add(hc.rdbtusado);
+
+		hc.lblKm.setBounds(140,280,100,20);
+		this.add(hc.lblKm);
+		hc.txtKm.setBounds(125,300,100,20);
+		this.add(hc.txtKm);
+		hc.txtKm.setEditable(false);
+
+		btnConsultar.setBounds(55,350,100,30);
+		this.add(btnConsultar);
+		btnExcluir.setBounds(190,350,100,30);
+		this.add(btnExcluir);
+		this.btnExcluir.setEnabled(false);
+
+		background.setBounds(1, 1, 350, 500);
+		this.add(background);
+
+
+		//AÇÃO DO BOTÃO CONSULTAR
+
+		this.btnConsultar.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+
+				if(hc.txtCodigo_Veiculo.getText().isEmpty())
+					JOptionPane.showMessageDialog(null, "Campo código vazio!!!", "Campo vazio...", 2);
+				else
+					if(hc.txtCodigo_Veiculo.getText().equals(Programa.dadosveiculos.getCod_veiculo())){
+
+						hc.txtChassi.setText(Programa.dadosveiculos.getChassi());
+						hc.txtRenavam.setText(Programa.dadosveiculos.getRenavam());
+						hc.txtModelo.setText(Programa.dadosveiculos.getModelo());
+						hc.txtAno.setText(Programa.dadosveiculos.getAno());
+						hc.txtDtAqs.setText(Programa.dadosveiculos.getData_aquisicao());
+
+						if(Programa.dadosveiculos.getZero_usado() == "zero")
+							hc.rdbtnovo.setSelected(true);
+						if(Programa.dadosveiculos.getZero_usado() == "usado"){
+							hc.rdbtusado.setSelected(true);
+							hc.lblKm.setVisible(true);
+							hc.txtKm.setVisible(true);
+							hc.txtKm.setText(Programa.dadosveiculos.getKm());
+						}
+
+
+						hc.txtCodigo_Veiculo.setEditable(false);
+						btnExcluir.setEnabled(true);
+						btnConsultar.setEnabled(false);
+					}
+					else	
+						JOptionPane.showMessageDialog(null, "Este veículo não existe!", "Veículo não encontrado...", 2);
+			}
+		});
+
+		//AÇÃO DO BOTÃO EXCLUIR
+
+		this.btnExcluir.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+
+				int resp = JOptionPane.showConfirmDialog(null, "Deseja excluir?", "Confirma exclusão?", 0);
+
+				if (resp == JOptionPane.YES_OPTION){
+
+					Programa.dadosveiculos.setCod_veiculo(null);
+					Programa.dadosveiculos.setChassi(null);
+					Programa.dadosveiculos.setRenavam(null);
+					Programa.dadosveiculos.setModelo(null);
+					Programa.dadosveiculos.setAno(hc.txtAno.getText());
+					Programa.dadosveiculos.setData_aquisicao(hc.txtDtAqs.getText());
+
+					if(hc.rdbtnovo.isSelected()){
+						Programa.dadosveiculos.setZero_usado("zero");
+						Programa.dadosveiculos.setKm("0");
+					}
+					if(hc.rdbtusado.isSelected()){
+						Programa.dadosveiculos.setZero_usado("usado");
+						Programa.dadosveiculos.setKm(hc.txtKm.getText());
+					}
+
+					JOptionPane.showMessageDialog(null, "Veículo alterado com sucesso...", "Alteração realizada!!!", 1);
+				}
+			}
+		});
+	}
+}

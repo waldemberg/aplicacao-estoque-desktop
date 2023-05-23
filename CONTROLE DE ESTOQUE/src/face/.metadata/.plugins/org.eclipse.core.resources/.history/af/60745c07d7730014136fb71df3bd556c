@@ -1,0 +1,108 @@
+package face;
+
+import java.awt.event.*;
+
+import javax.naming.ldap.Rdn;
+import javax.swing.*;
+
+import dominio.ObjetosVeiculos;
+
+public class JanelaAlterarCarro extends JFrame{
+	
+	/*GUIA PARA CRIAÇÃO DOS OBJETOS DO TIPO LABELS, BOTÕES, RADIOS BUTTONS...
+	 *INICIA COM UM PREFIXO E DEPOIS ADICIONA O NOME ESCOLHIDO PARA O OBJETO
+	 *
+	 *TIPO		      DECLARAÇÃO
+	 *JLABEL      --> lbl    + Nome1Nome2
+	 *TEXTFIELD   --> txt    + Nome1Nome2
+	 *BUTTON      --> btn    + Nome1Nome2
+	 *RADIOBUTTON --> rdbtn  + Nome1Nome2
+	 *BUTTONGROUP --> grpbtn + Nome1Nome2*/
+	
+	private JPanel contentPane = new JPanel();
+	
+	private ImageIcon imagem = new ImageIcon(getClass().getResource("alterarcarros.png"));
+	private JLabel background = new JLabel(imagem);
+	
+	
+	
+	// CRIA UM OBJETO PARA HERDAR OS COMPONENTES DO VEICULO 	
+	ObjetosVeiculos hc = new ObjetosVeiculos();
+	
+	// ADICIONA SEPARADORES DE TELA
+	JSeparator s1 = new JSeparator();
+	JSeparator s2 = new JSeparator();
+	
+	// ADICIONA OS BOTÕES CONSULTAR E ALTERAR
+	JButton btnConsultar = new JButton("Consultar");
+	JButton btnAlterar = new JButton("Alterar");
+
+	
+		public JanelaAlterarCarro() {
+		// DEFINE PROPRIEDADES DA TELA
+		super("Alteração de Carros");
+		this.setBounds(300, 300, 350, 380);
+		getContentPane().setLayout(null);
+		setLocationRelativeTo(null);
+		setResizable(false);
+	
+		s1.setBounds(1,60,350,20);
+		this.add(s1);
+		
+		//ADICIONA OBJETOS DE CARRO
+		hc.lblCodigo_Veiculo.setBounds(60,80,100,20);
+		this.add(hc.lblCodigo_Veiculo);
+		hc.txtCodigo_Veiculo.setBounds(55,100,100,20);
+		this.add(hc.txtCodigo_Veiculo);
+		
+		hc.lblChassi.setBounds(220,80,120,20);
+		this.add(hc.lblChassi);
+		hc.txtChassi.setBounds(190,100,100,20);
+		this.add(hc.txtChassi);
+		hc.txtChassi.setEditable(false);
+		
+		hc.lblRenavam.setBounds(60,130,115,20);
+		this.add(hc.lblRenavam);
+		hc.txtRenavam.setBounds(55,150,100,20);
+		this.add(hc.txtRenavam);
+		
+		hc.lblModelo.setBounds(220,130,115,20);
+		this.add(hc.lblModelo);
+		hc.txtModelo.setBounds(190,150,100,20);
+		this.add(hc.txtModelo);
+		
+
+		hc.lblAno.setBounds(90,180,115,20);
+		this.add(hc.lblAno);
+		hc.txtAno.setBounds(55,200,100,20);
+		this.add(hc.txtAno);
+		
+
+		hc.lblDtAqs.setBounds(190,180,115,20);
+		this.add(hc.lblDtAqs);
+		hc.txtDtAqs.setBounds(190,200,100,20);
+		this.add(hc.txtDtAqs);
+		
+		hc.lblOpc.setBounds(70,250,115,20);
+		this.add(hc.lblOpc);
+		hc.rdbtnovo.setBounds(120,250,70,20);
+		this.add(hc.rdbtnovo);
+		hc.rdbtusado.setBounds(210,250,120,20);
+		this.add(hc.rdbtusado);
+		hc.btngrpnovo.add(hc.rdbtnovo);
+		hc.btngrpnovo.add(hc.rdbtusado);
+		
+		s2.setBounds(1,290,500,20);
+		this.add(s2);
+		
+		btnConsultar.setBounds(55,308,100,30);
+		this.add(btnConsultar);
+		btnAlterar.setBounds(190,308,100,30);
+		this.add(btnAlterar);
+		
+		background.setBounds(1, 1, 350, 500);
+		this.add(background);
+	}
+		
+	
+}

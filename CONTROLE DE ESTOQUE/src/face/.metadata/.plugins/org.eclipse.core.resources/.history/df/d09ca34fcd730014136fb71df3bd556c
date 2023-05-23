@@ -1,0 +1,498 @@
+package face;
+
+import java.awt.event.*;
+
+import javax.swing.*;
+
+import controle.Programa;
+import dominio.ObjetosCliente;
+
+public class JanelaExcluirCliente extends JFrame{
+
+	/*GUIA PARA CRIAÇÃO DOS OBJETOS DO TIPO LABELS, BOTÕES, RADIOS BUTTONS...
+	 *INICIA COM UM PREFIXO E DEPOIS ADICIONA O NOME ESCOLHIDO PARA O OBJETO
+	 *
+	 *TIPO		      DECLARAÇÃO
+	 *JLABEL      --> lbl    + Nome1Nome2
+	 *TEXTFIELD   --> txt    + Nome1Nome2
+	 *BUTTON      --> btn    + Nome1Nome2
+	 *RADIOBUTTON --> rdbtn  + Nome1Nome2
+	 *BUTTONGROUP --> grpbtn + Nome1Nome2*/
+
+	private JPanel contentPane = new JPanel();
+	private Boolean cpfisica, cpjuridica, cpcomuns; 
+	private JSeparator sep1 = new JSeparator();
+	private JSeparator sep2 = new JSeparator();
+	private JButton btnconsultar = new JButton("Consultar");
+	private JButton btnexcluir = new JButton("Excluir");
+	private ObjetosCliente herancacli = new ObjetosCliente(); //CRIA UM OBJETO DE HERANÇA DOS OBJETOS CLIENTES
+	private ImageIcon imagem = new ImageIcon(getClass().getResource("excluirclientes.png"));
+	private JLabel background = new JLabel(imagem);
+	
+	public JanelaExcluirCliente() {
+
+		super("Exclusão de Clientes");
+		getContentPane().setLayout(null);
+		this.setBounds(300, 300, 350, 585);
+		setLocationRelativeTo(null);
+		setResizable(false);
+
+
+		//ADICIONA DOIS SEPARADORES DE TELA
+		this.sep1.setBounds(0, 100, 350, 60);
+		this.add(sep1);
+		this.sep2.setBounds(0, 480, 350, 60);
+		this.add(sep2);
+		//-----------------------------------------------------------------------------------------------------
+
+		//ADICIONA A OPCAO CLIENTE PESSOA FISICA OU JURIDICA?
+		this.herancacli.lblVoceE.setBounds(60, 50, 250, 20);
+		this.add(herancacli.lblVoceE);
+		this.herancacli.lblPF.setBounds(60, 70, 100, 20);
+		this.add(herancacli.lblPF);
+		this.herancacli.rdbtnPF.setBounds(143, 70, 20, 20);
+		this.add(herancacli.rdbtnPF);
+		this.herancacli.lblPJ.setBounds(165, 70, 100, 20);
+		this.add(herancacli.lblPJ);
+		this.herancacli.rdbtnPJ.setBounds(260, 70, 20, 20);
+		this.add(herancacli.rdbtnPJ);
+
+		this.herancacli.btngrppfpj.add(herancacli.rdbtnPF);
+		this.herancacli.btngrppfpj.add(herancacli.rdbtnPJ);
+		//-----------------------------------------------------------------------------------------------------
+
+		//ADICIONA TODOS OS CAMPOS/LABELS A JANELA
+		this.herancacli.lblCPF.setBounds(20, 110, 100, 15); 
+		this.add(herancacli.lblCPF);
+		this.herancacli.lblID.setBounds(180, 110, 110, 15);
+		this.add(herancacli.lblID);
+		this.herancacli.lblNome.setBounds(20, 155, 100, 15);
+		this.add(herancacli.lblNome);
+		this.herancacli.lblDataNasc.setBounds(20, 200, 150, 15);
+		this.add(herancacli.lblDataNasc);
+		this.herancacli.lblSexo.setBounds(180, 200, 40, 15);
+		this.add(herancacli.lblSexo);
+		this.herancacli.lblMasculino.setBounds(240, 200, 70, 15);
+		this.add(herancacli.lblMasculino);
+		this.herancacli.lblFeminino.setBounds(240, 215, 70, 15);
+		this.add(herancacli.lblFeminino);
+
+		this.herancacli.lblCPNJ.setBounds(20, 110, 100, 15);
+		this.add(herancacli.lblCPNJ);
+		this.herancacli.lblInscricaoE.setBounds(180, 110, 120, 15);
+		this.add(herancacli.lblInscricaoE);
+		this.herancacli.lblInscricaoM.setBounds(20, 155, 120, 15);
+		this.add(herancacli.lblInscricaoM);
+		this.herancacli.lblRazaoSocial.setBounds(20, 200, 120, 15);
+		this.add(herancacli.lblRazaoSocial);
+
+
+		this.herancacli.lblLogradouro.setBounds(20, 245, 100, 15);
+		this.add(herancacli.lblLogradouro);
+		this.herancacli.lblNumero.setBounds(20, 290, 100, 15);
+		this.add(herancacli.lblNumero);
+		this.herancacli.lblComplemento.setBounds(100, 290, 100, 15);
+		this.add(herancacli.lblComplemento);
+		this.herancacli.lblBairro.setBounds(20, 335, 100, 15);
+		this.add(herancacli.lblBairro);
+		this.herancacli.lblCidade.setBounds(180, 335, 100, 15);
+		this.add(herancacli.lblCidade);
+		this.herancacli.lblUF.setBounds(180, 380, 100, 15); 
+		this.add(herancacli.lblUF);
+		this.herancacli.lblCep.setBounds(20, 380, 100, 15);
+		this.add(herancacli.lblCep);
+		this.herancacli.lblTelefone.setBounds(20, 425, 100, 15);
+		this.add(herancacli.lblTelefone);
+		this.herancacli.lblEmail.setBounds(180, 425, 100, 15);
+		this.add(herancacli.lblEmail);		
+
+		this.herancacli.txtCPF.setBounds(20, 125, 130, 20);
+		this.add(herancacli.txtCPF);
+		this.herancacli.txtID.setBounds(180, 125, 130, 20);
+		this.add(herancacli.txtID);
+		this.herancacli.txtID.setEditable(false);
+		this.herancacli.txtNome.setBounds(20, 170, 290, 20);
+		this.add(herancacli.txtNome);
+		this.herancacli.txtNome.setEditable(false);
+		this.herancacli.txtDataNasc.setBounds(20, 215, 130, 20);
+		this.add(herancacli.txtDataNasc);
+		this.herancacli.txtDataNasc.setEditable(false);
+		this.herancacli.rdbtnMas.setBounds(220, 200, 20, 15);
+		this.add(herancacli.rdbtnMas);
+		this.herancacli.rdbtnMas.setEnabled(false);
+		this.herancacli.rdbtnFem.setBounds(220, 215, 20, 15);
+		this.add(herancacli.rdbtnFem);
+		this.herancacli.rdbtnFem.setEnabled(false);
+
+		this.herancacli.btngrpsexo.add(herancacli.rdbtnFem);
+		this.herancacli.btngrpsexo.add(herancacli.rdbtnMas);
+
+		this.herancacli.txtCNPJ.setBounds(20, 125, 130, 20);
+		this.add(herancacli.txtCNPJ);
+		this.herancacli.txtInscricaoE.setBounds(180, 125, 130, 20);
+		this.add(herancacli.txtInscricaoE);
+		this.herancacli.txtInscricaoE.setEditable(false);
+		this.herancacli.txtInscricaoM.setBounds(20, 170, 130, 20);
+		this.add(herancacli.txtInscricaoM);
+		this.herancacli.txtInscricaoM.setEditable(false);
+		this.herancacli.txtRazaoSocial.setBounds(20, 215, 290, 20);
+		this.add(herancacli.txtRazaoSocial);
+		this.herancacli.txtRazaoSocial.setEditable(false);
+
+
+		this.herancacli.txtLogradouro.setBounds(20, 260, 290, 20);
+		this.add(herancacli.txtLogradouro);
+		this.herancacli.txtLogradouro.setEditable(false);
+		this.herancacli.txtNumero.setBounds(20, 305, 50, 20);
+		this.add(herancacli.txtNumero);
+		this.herancacli.txtNumero.setEditable(false);
+		this.herancacli.txtComplemento.setBounds(100, 305, 210, 20);
+		this.add(herancacli.txtComplemento);
+		this.herancacli.txtComplemento.setEditable(false);
+		this.herancacli.txtBairro.setBounds(20, 350, 130, 20);
+		this.add(herancacli.txtBairro);
+		this.herancacli.txtBairro.setEditable(false);
+		this.herancacli.txtCidade.setBounds(180, 350, 130, 20);
+		this.add(herancacli.txtCidade);
+		this.herancacli.txtCidade.setEditable(false);
+		this.herancacli.txtUF.setBounds(180, 395, 30, 20);
+		this.add(herancacli.txtUF);
+		this.herancacli.txtUF.setEditable(false);
+		this.herancacli.txtCep.setBounds(20, 395, 130, 20);
+		this.add(herancacli.txtCep);
+		this.herancacli.txtCep.setEditable(false);
+		this.herancacli.txtTelefone.setBounds(20, 440, 130, 20);
+		this.add(herancacli.txtTelefone);
+		this.herancacli.txtTelefone.setEditable(false);
+		this.herancacli.txtEmail.setBounds(180, 440, 130, 20);
+		this.add(herancacli.txtEmail);
+		this.herancacli.txtEmail.setEditable(false);
+		//-----------------------------------------------------------------------------------------------------
+
+		//ADICIONA OS BOTÕES CONSULTAR E EXCLUIR
+		this.btnconsultar.setBounds(20, 495, 130, 35);
+		this.add(btnconsultar);
+		this.btnconsultar.setVisible(false);
+
+		this.btnexcluir.setBounds(180, 495, 130, 35);
+		this.add(btnexcluir);
+		this.btnexcluir.setVisible(false);
+		this.btnexcluir.setEnabled(false);
+		//-----------------------------------------------------------------------------------------------------
+
+		//TORNA OS CAMPOS INVISIVEIS ATE A ESCOLHA DA OPCAO
+		CamposFisica(this.cpfisica = false);
+		CamposJuridica(this.cpjuridica = false);
+		CamposComuns(this.cpcomuns = false);
+		//-----------------------------------------------------------------------------------------------------
+
+		//INIBE A DIGITAÇÃO DE VALOR NÃO NUMERICO NO CAMPO CPF
+		this.herancacli.txtCPF.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent ev){
+				String caracteres = "01234567890";
+				if (!caracteres.contains(ev.getKeyChar()+"")){
+					ev.consume();
+				}
+			}
+		});
+		//-----------------------------------------------------------------------------------------------------
+
+		//INIBE A DIGITAÇÃO DE VALOR NÃO NUMERICO NO CAMPO CNPJ
+		this.herancacli.txtCNPJ.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent ev){
+				String caracteres = "01234567890";
+				if (!caracteres.contains(ev.getKeyChar()+"")){
+					ev.consume();
+				}
+			}
+		});
+		//-----------------------------------------------------------------------------------------------------
+
+		//MOSTRA OS CAMPOS NA TELA CONFORME A SELEÇÃO DA RADIO BUTTON PESSOA FISICA
+		this.herancacli.rdbtnPF.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent arg0) {
+				if (herancacli.rdbtnPF.isSelected()){
+
+					CamposJuridica(cpjuridica = false);
+					CamposFisica(cpfisica = true);
+					CamposComuns(cpcomuns = true);
+					btnconsultar.setVisible(true);
+					btnexcluir.setVisible(true);
+				}
+			}
+		});
+		//-----------------------------------------------------------------------------------------------------
+
+		//MOSTRA OS CAMPOS NA TELA CONFORME A SELEÇÃO DA RADIO BUTTON PESSOA JURIDICA
+		this.herancacli.rdbtnPJ.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent arg0) {
+				if (herancacli.rdbtnPJ.isSelected()){
+
+					CamposFisica(cpfisica = false);
+					CamposJuridica(cpjuridica = true);
+					CamposComuns(cpcomuns = true);
+					btnconsultar.setVisible(true);
+					btnexcluir.setVisible(true);
+
+				}
+
+			}
+		});
+		//-----------------------------------------------------------------------------------------------------
+
+		//AÇÃO DO BOTÃO CONSULTAR
+		this.btnconsultar.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent arg0) {
+
+				//CONSULTA PESSOA FISICA
+				if (herancacli.rdbtnPF.isSelected()){
+					if (herancacli.txtCPF.getText().isEmpty()) //VALIDA SE O campo txtCPF está vazio ) 
+						JOptionPane.showMessageDialog(null, "Campo CPF vazio!", "Digite um CPF válido!", 2);
+					else 
+						//TESTA O CONTEUDO DO txtCPF JUNTO AO ATRIBUTO DO OBJETO
+						if (herancacli.txtCPF.getText().equals(Programa.dadosclientes.getCpf())){
+
+							//DESABILITA PARA NOVA CONSULTA QUANDO CPF ENCONTRADO
+							herancacli.txtCPF.setEditable(false);
+							herancacli.rdbtnPF.setEnabled(false);
+							herancacli.rdbtnPJ.setEnabled(false);
+
+							//MOSTRA OS VALORES DOS ATRIBUTOS NAS TEXTFIELDS 
+							herancacli.txtID.setText(Programa.dadosclientes.getId());
+							herancacli.txtNome.setText(Programa.dadosclientes.getNome());
+							herancacli.txtDataNasc.setText(Programa.dadosclientes.getDatanasc());
+
+							//TESTA O VALOR DO ATRIBUTO SEXO E MARCA O RADIO BUTTON CORRESPONDENTE
+							if (Programa.dadosclientes.getSexo() == "Mas")
+								herancacli.rdbtnMas.setSelected(true);
+							else
+								herancacli.rdbtnFem.setSelected(true);
+
+							herancacli.txtLogradouro.setText(Programa.dadosclientes.getLogradouro_fis());
+							herancacli.txtNumero.setText(Programa.dadosclientes.getNumero_fis());
+							herancacli.txtComplemento.setText(Programa.dadosclientes.getComplemento_fis());
+							herancacli.txtBairro.setText(Programa.dadosclientes.getBairro_fis());
+							herancacli.txtCidade.setText(Programa.dadosclientes.getCidade_fis());
+							herancacli.txtCep.setText(Programa.dadosclientes.getCep_fis());
+							herancacli.txtUF.setText(Programa.dadosclientes.getUf_fis());
+							herancacli.txtTelefone.setText(Programa.dadosclientes.getTelefone_fis());
+							herancacli.txtEmail.setText(Programa.dadosclientes.getEmail_fis());
+							
+							btnconsultar.setEnabled(false);
+							btnexcluir.setEnabled(true);
+
+						}
+						else
+							JOptionPane.showMessageDialog(null, "CPF não encontrado...", "CPF não existe!", 2);
+				}
+				else
+					//CONSULTA PESSOA JURIDICA
+					if (herancacli.rdbtnPJ.isSelected()){
+						if (herancacli.txtCNPJ.getText().isEmpty()) //VALIDA SE O campo txtCNPJ está vazio ) 
+							JOptionPane.showMessageDialog(null, "Campo CNPJ vazio!", "Digite um CNPJ válido!", 2);
+						else 
+							//TESTA O CONTEUDO DO txtCNPJ JUNTO AO ATRIBUTO DO OBJETO
+							if (herancacli.txtCNPJ.getText().equals(Programa.dadosclientes.getCnpj())){
+
+								//DESABILITA PARA NOVA CONSULTA QUANDO CNPJ ENCONTRADO
+								herancacli.txtCNPJ.setEditable(false);
+								herancacli.rdbtnPF.setEnabled(false);
+								herancacli.rdbtnPJ.setEnabled(false);
+
+								//MOSTRA O VALOR DOS ATRIBUTOS NAS TEXTSFIELDS
+								herancacli.txtInscricaoE.setText(Programa.dadosclientes.getInscricaoe());
+								herancacli.txtInscricaoM.setText(Programa.dadosclientes.getInscricaom());
+								herancacli.txtRazaoSocial.setText(Programa.dadosclientes.getRazaosocial());
+								herancacli.txtLogradouro.setText(Programa.dadosclientes.getLogradouro_jur());
+								herancacli.txtNumero.setText(Programa.dadosclientes.getNumero_jur());
+								herancacli.txtComplemento.setText(Programa.dadosclientes.getComplemento_jur());
+								herancacli.txtBairro.setText(Programa.dadosclientes.getBairro_jur());
+								herancacli.txtCidade.setText(Programa.dadosclientes.getCidade_jur());
+								herancacli.txtCep.setText(Programa.dadosclientes.getCep_jur());
+								herancacli.txtUF.setText(Programa.dadosclientes.getUf_jur());
+								herancacli.txtTelefone.setText(Programa.dadosclientes.getTelefone_jur());
+								herancacli.txtEmail.setText(Programa.dadosclientes.getEmail_jur());
+								
+								btnconsultar.setEnabled(false);
+								btnexcluir.setEnabled(true);
+
+							}
+							else
+								JOptionPane.showMessageDialog(null, "CNPJ não encontrado...", "CNPJ não existe!", 2);
+					}
+			};
+		});
+		//-----------------------------------------------------------------------------------------------------
+		
+		//AÇÃO DO BOTÃO EXCLUIR
+		this.btnexcluir.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				
+				//EXCLUI PESSOA FISICA
+				if (herancacli.rdbtnPF.isSelected()){
+					
+					JOptionPane.showConfirmDialog(null, "Deseja excluir?", "Confirma exclusão?", 1);
+					
+					Programa.dadosclientes.setCpf(null);
+					Programa.dadosclientes.setId(null);
+					Programa.dadosclientes.setNome(null);
+					Programa.dadosclientes.setDatanasc(null);
+					Programa.dadosclientes.setSexo(null);
+					Programa.dadosclientes.setLogradouro_fis(null);
+					Programa.dadosclientes.setNumero_fis(null);
+					Programa.dadosclientes.setComplemento_fis(null);
+					Programa.dadosclientes.setBairro_fis(null);
+					Programa.dadosclientes.setCidade_fis(null);
+					Programa.dadosclientes.setCep_fis(null);
+					Programa.dadosclientes.setUf_fis(null);
+					Programa.dadosclientes.setTelefone_fis(null);
+					Programa.dadosclientes.setEmail_fis(null);
+					
+					JOptionPane.showMessageDialog(null, "Cliente Pessoa Física excluída...", "Exclusão efetuada com sucesso!", 2);
+					btnexcluir.setEnabled(false);
+				}
+				else
+					//EXCLUI PESSOA JURIDICA
+					if (herancacli.rdbtnPJ.isSelected()){
+						
+						Programa.dadosclientes.setCnpj(null);
+						Programa.dadosclientes.setInscricaoe(null);
+						Programa.dadosclientes.setInscricaom(null);
+						Programa.dadosclientes.setRazaosocial(null);
+						Programa.dadosclientes.setLogradouro_jur(null);
+						Programa.dadosclientes.setNumero_jur(null);
+						Programa.dadosclientes.setComplemento_jur(null);
+						Programa.dadosclientes.setBairro_jur(null);
+						Programa.dadosclientes.setCidade_jur(null);
+						Programa.dadosclientes.setCep_jur(null);
+						Programa.dadosclientes.setUf_jur(null);
+						Programa.dadosclientes.setTelefone_jur(null);
+						Programa.dadosclientes.setEmail_jur(null);
+						
+						JOptionPane.showMessageDialog(null, "Cliente Pessoa Jurídica excluída...", "Exclusão efetuada com sucesso!", 2);
+						btnexcluir.setEnabled(false);
+					}
+			}
+		});
+	}
+
+
+	//HABILITA OU DESABILITA TODOS OS CAMPOS DA PESSOA FISICA CONFORME O ARGUMENTO RECEBIDO
+	private void CamposFisica(Boolean cpfisica){
+		if (this.cpfisica == true){
+			this.herancacli.lblCPF.setVisible(true);
+			this.herancacli.lblNome.setVisible(true);
+			this.herancacli.lblID.setVisible(true);
+			this.herancacli.lblDataNasc.setVisible(true);
+			this.herancacli.lblSexo.setVisible(true);
+
+			this.herancacli.txtCPF.setVisible(true);
+			this.herancacli.txtID.setVisible(true);
+			this.herancacli.txtNome.setVisible(true);
+			this.herancacli.txtDataNasc.setVisible(true);
+			this.herancacli.rdbtnMas.setVisible(true);
+			this.herancacli.rdbtnFem.setVisible(true);
+			this.herancacli.lblMasculino.setVisible(true);
+			this.herancacli.lblFeminino.setVisible(true);
+		}
+		else{
+			this.herancacli.lblCPF.setVisible(false);
+			this.herancacli.lblNome.setVisible(false);
+			this.herancacli.lblID.setVisible(false);
+			this.herancacli.lblDataNasc.setVisible(false);
+			this.herancacli.lblSexo.setVisible(false);
+
+			this.herancacli.txtCPF.setVisible(false);
+			this.herancacli.txtID.setVisible(false);
+			this.herancacli.txtNome.setVisible(false);
+			this.herancacli.txtDataNasc.setVisible(false);
+			this.herancacli.rdbtnMas.setVisible(false);
+			this.herancacli.rdbtnFem.setVisible(false);
+			this.herancacli.lblMasculino.setVisible(false);
+			this.herancacli.lblFeminino.setVisible(false);
+		}
+
+	}
+	//-----------------------------------------------------------------------------------------------------
+
+
+	//HABILITA OU DESABILITA TODOS OS CAMPOS DA PESSOA JURIDICA CONFORME O ARGUMENTO RECEBIDO
+	private void CamposJuridica(Boolean cpjuridica){
+		if (cpjuridica == true){
+			this.herancacli.lblCPNJ.setVisible(true);
+			this.herancacli.lblRazaoSocial.setVisible(true);
+			this.herancacli.lblInscricaoE.setVisible(true);
+			this.herancacli.lblInscricaoM.setVisible(true);
+
+			this.herancacli.txtCNPJ.setVisible(true);
+			this.herancacli.txtRazaoSocial.setVisible(true);
+			this.herancacli.txtInscricaoE.setVisible(true);
+			this.herancacli.txtInscricaoM.setVisible(true);
+		}
+		else{
+			this.herancacli.lblCPNJ.setVisible(false);
+			this.herancacli.lblRazaoSocial.setVisible(false);
+			this.herancacli.lblInscricaoE.setVisible(false);
+			this.herancacli.lblInscricaoM.setVisible(false);
+
+			this.herancacli.txtCNPJ.setVisible(false);
+			this.herancacli.txtRazaoSocial.setVisible(false);
+			this.herancacli.txtInscricaoE.setVisible(false);
+			this.herancacli.txtInscricaoM.setVisible(false);
+		}
+	}
+	//-----------------------------------------------------------------------------------------------------
+
+	//HABILITA OU DESABILITA TODOS OS CAMPOS COMUNS CONFORME O ARGUMENTO RECEBIDO
+	private void CamposComuns(Boolean cpcomuns){
+		if (cpcomuns == true){
+			this.herancacli.lblLogradouro.setVisible(true);
+			this.herancacli.lblNumero.setVisible(true);
+			this.herancacli.lblComplemento.setVisible(true);
+			this.herancacli.lblBairro.setVisible(true);
+			this.herancacli.lblCidade.setVisible(true);
+			this.herancacli.lblUF.setVisible(true);
+			this.herancacli.lblCep.setVisible(true);
+			this.herancacli.lblTelefone.setVisible(true);
+			this.herancacli.lblEmail.setVisible(true);
+
+			this.herancacli.txtLogradouro.setVisible(true);
+			this.herancacli.txtNumero.setVisible(true);
+			this.herancacli.txtComplemento.setVisible(true);
+			this.herancacli.txtBairro.setVisible(true);
+			this.herancacli.txtCidade.setVisible(true);
+			this.herancacli.txtUF.setVisible(true);
+			this.herancacli.txtCep.setVisible(true);
+			this.herancacli.txtTelefone.setVisible(true);
+			this.herancacli.txtEmail.setVisible(true);
+		}
+		else{
+			this.herancacli.lblLogradouro.setVisible(false);
+			this.herancacli.lblNumero.setVisible(false);
+			this.herancacli.lblComplemento.setVisible(false);
+			this.herancacli.lblBairro.setVisible(false);
+			this.herancacli.lblCidade.setVisible(false);
+			this.herancacli.lblUF.setVisible(false);
+			this.herancacli.lblCep.setVisible(false);
+			this.herancacli.lblTelefone.setVisible(false);
+			this.herancacli.lblEmail.setVisible(false);
+
+			this.herancacli.txtLogradouro.setVisible(false);
+			this.herancacli.txtNumero.setVisible(false);
+			this.herancacli.txtComplemento.setVisible(false);
+			this.herancacli.txtBairro.setVisible(false);
+			this.herancacli.txtCidade.setVisible(false);
+			this.herancacli.txtUF.setVisible(false);
+			this.herancacli.txtCep.setVisible(false);
+			this.herancacli.txtTelefone.setVisible(false);
+			this.herancacli.txtEmail.setVisible(false);
+		}
+		background.setBounds(1, 1, 350, 500);
+		this.add(background);
+	}
+	
+}

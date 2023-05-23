@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="CONTROLE DE ESTOQUE/src"/>
+	<classpathentry kind="lib" path="CONTROLE DE ESTOQUE/forms-1.3.0.jar"/>
+	<classpathentry kind="lib" path="CONTROLE DE ESTOQUE/lib/postgresql-8.2-512.jdbc2.jar"/>
+	<classpathentry kind="lib" path="CONTROLE DE ESTOQUE/lib/postgresql-9.3-1102.jdbc3.jar"/>
+	<classpathentry kind="lib" path="CONTROLE DE ESTOQUE/lib/postgresql-9.3-1102.jdbc4.jar"/>
+	<classpathentry kind="lib" path="CONTROLE DE ESTOQUE/lib/postgresql-9.3-1102.jdbc41.jar"/>
+	<classpathentry kind="lib" path="CONTROLE DE ESTOQUE/miglayout15-swing.jar"/>
+	<classpathentry kind="output" path="CONTROLE DE ESTOQUE/bin"/>
+</classpath>
